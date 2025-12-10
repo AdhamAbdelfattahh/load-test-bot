@@ -1,28 +1,23 @@
-name: Website Load Test
+name: Load Test
 
 on:
   schedule:
-    - cron: "*/2 * * * *"  # runs every 2 minutes
-  workflow_dispatch:
+    - cron: "*/5 * * * *"   # Starts every 5 minutes (script runs forever inside)
+  workflow_dispatch:        # Allows manual starting anytime
 
 jobs:
-  loadtest:
+  run-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
         run: pip install requests
 
-      - name: Run load test
-        run: |
-          python - << 'EOF'
-          import requests, time
-          URL = "https://www.youtube.com/watch?v=q_qFydLjmv8&list=PLEzOcs9Uvqogl1CFAMLt2utB6nAgCv21N&pp=gAQB"
-
-          while True:
-              try:
-                  r = requests.get(URL)
-                  print(r.status_code, r.elapsed.total_seconds())
-              except:
-                  print("error")
-              time.sleep(0.1)   # ~10 req/sec
-          EOF
+      - name: Run Load Test Bot
+        run: python load_test.py
