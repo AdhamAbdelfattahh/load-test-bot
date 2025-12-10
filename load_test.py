@@ -6,7 +6,7 @@ import random
 # -----------------------------
 # CHANGE THIS TO YOUR STAGING URL
 # -----------------------------
-URL = "https://staging-your-service.com"
+URL = "https://www.youtube.com/watch?v=q_qFydLjmv8&list=PLEzOcs9Uvqogl1CFAMLt2utB6nAgCv21N&pp=gAQB"
 
 BOT_COUNT = 5       # Number of parallel bots
 MIN_RUN = 5 * 60    # 5 minutes
