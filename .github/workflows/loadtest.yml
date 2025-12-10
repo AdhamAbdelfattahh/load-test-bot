@@ -1,9 +1,9 @@
-name: Load Test
+name: Load Test Staging
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # Starts every 5 minutes (script runs forever inside)
-  workflow_dispatch:        # Allows manual starting anytime
+    - cron: "*/5 * * * *"  # starts every 5 minutes, script manages its own cycles
+  workflow_dispatch:        # allows manual start
 
 jobs:
   run-test:
